@@ -15,7 +15,7 @@ RUN apt-get install -y apache2
 RUN /bin/bash -l -c 'echo "mysql-server mysql-server/root_password select root" | debconf-set-selections'
 RUN /bin/bash -l -c 'echo "mysql-server mysql-server/root_password_again select root" | debconf-set-selections'
 RUN apt-get install -y mysql-server libapache2-mod-auth-mysql php5-mysql
-RUN /bin/bash -l -c "service mysql start; mysql -uroot -proot -e 'Create database if not exists drupal'"
+RUN /bin/bash -l -c "service mysql start; mysql -uroot -e 'Create database if not exists drupal'"
 
 # Install PHP
 RUN apt-get install -y php5 libapache2-mod-php5 php5-mcrypt php5-gd
