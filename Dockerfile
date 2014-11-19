@@ -16,7 +16,7 @@ RUN /bin/bash -l -c 'echo "mysql-server mysql-server/root_password select root" 
 RUN /bin/bash -l -c 'echo "mysql-server mysql-server/root_password_again select root" | debconf-set-selections'
 RUN apt-get install -y mysql-server libapache2-mod-auth-mysql php5-mysql
 RUN /bin/bash -l -c "service mysql start; mysql -uroot -e 'Create database if not exists drupal'"
-RUN /bin/bash -l -c "service mysql start; mysql -uroot -e 'UPDATE mysql.user SET Password=PASSWORD(\"root\") WHERE User=\"root\"' ";
+RUN service mysql start; mysql -uroot -e 'UPDATE mysql.user SET Password=PASSWORD("root") WHERE User="root"';
 
 # Install PHP
 RUN apt-get install -y php5 libapache2-mod-php5 php5-mcrypt php5-gd
